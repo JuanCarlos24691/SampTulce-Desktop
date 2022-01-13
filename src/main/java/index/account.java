@@ -202,7 +202,7 @@ public class account extends javax.swing.JPanel {
         userName.setText("Nombre de usuario");
         userName.setFont(new loadFont().loadFonts(System.getProperty("user.dir") + "/src/main/resources/fonts/Quicksand-SemiBold.ttf", 20));
 
-        userID.setText("- ID: 0");
+        userID.setText("- DB-ID: 0");
         userID.setFont(new loadFont().loadFonts(System.getProperty("user.dir") + "/src/main/resources/fonts/Quicksand-SemiBold.ttf", 20));
 
         hideSesion.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -409,7 +409,7 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(userVip, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userIP, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userIP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         infoPane5Layout.setVerticalGroup(
@@ -435,7 +435,7 @@ public class account extends javax.swing.JPanel {
             .addGroup(userPaneNotification1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(userJail, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         userPaneNotification1Layout.setVerticalGroup(
             userPaneNotification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -535,7 +535,7 @@ public class account extends javax.swing.JPanel {
         userLevel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLevel1.setForeground(new java.awt.Color(100, 100, 100));
         userLevel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/level.png"))); // NOI18N
-        userLevel1.setText("Nivel: 0");
+        userLevel1.setText("Nivel: No se ha definido");
 
         userBankOne1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankOne1.setForeground(new java.awt.Color(100, 100, 100));
@@ -545,7 +545,7 @@ public class account extends javax.swing.JPanel {
         userBankTwo1.setBackground(new java.awt.Color(255, 255, 255));
         userBankTwo1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankTwo1.setForeground(new java.awt.Color(77, 189, 20));
-        userBankTwo1.setText("$0");
+        userBankTwo1.setText("No se ha definido");
 
         javax.swing.GroupLayout inventoryPane1Layout = new javax.swing.GroupLayout(inventoryPane1);
         inventoryPane1.setLayout(inventoryPane1Layout);
@@ -555,10 +555,10 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(userBankOne1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userBankTwo1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(userBankTwo1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         inventoryPane1Layout.setVerticalGroup(
             inventoryPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -574,7 +574,7 @@ public class account extends javax.swing.JPanel {
         userLevel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLevel2.setForeground(new java.awt.Color(100, 100, 100));
         userLevel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/level.png"))); // NOI18N
-        userLevel2.setText("Nivel: 0");
+        userLevel2.setText("Nivel: No se ha definido");
 
         userBankOne2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankOne2.setForeground(new java.awt.Color(100, 100, 100));
@@ -584,7 +584,7 @@ public class account extends javax.swing.JPanel {
         userBankTwo2.setBackground(new java.awt.Color(255, 255, 255));
         userBankTwo2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankTwo2.setForeground(new java.awt.Color(77, 189, 20));
-        userBankTwo2.setText("$0");
+        userBankTwo2.setText("No se ha definido");
 
         javax.swing.GroupLayout inventoryPane3Layout = new javax.swing.GroupLayout(inventoryPane3);
         inventoryPane3.setLayout(inventoryPane3Layout);
@@ -594,10 +594,10 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(userBankOne2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userBankTwo2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userLevel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(userBankTwo2, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userLevel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         inventoryPane3Layout.setVerticalGroup(
             inventoryPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,7 +615,7 @@ public class account extends javax.swing.JPanel {
         userLevel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLevel3.setForeground(new java.awt.Color(100, 100, 100));
         userLevel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/level.png"))); // NOI18N
-        userLevel3.setText("Nivel: 0");
+        userLevel3.setText("Nivel: No se ha definido");
 
         userBankOne3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankOne3.setForeground(new java.awt.Color(100, 100, 100));
@@ -625,7 +625,7 @@ public class account extends javax.swing.JPanel {
         userBankTwo3.setBackground(new java.awt.Color(255, 255, 255));
         userBankTwo3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankTwo3.setForeground(new java.awt.Color(77, 189, 20));
-        userBankTwo3.setText("$0");
+        userBankTwo3.setText("No se ha definido");
 
         javax.swing.GroupLayout inventoryPane4Layout = new javax.swing.GroupLayout(inventoryPane4);
         inventoryPane4.setLayout(inventoryPane4Layout);
@@ -635,10 +635,10 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(userBankOne3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userBankTwo3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userLevel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(userBankTwo3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userLevel3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         inventoryPane4Layout.setVerticalGroup(
             inventoryPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,7 +654,7 @@ public class account extends javax.swing.JPanel {
         userLevel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLevel4.setForeground(new java.awt.Color(100, 100, 100));
         userLevel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/level.png"))); // NOI18N
-        userLevel4.setText("Nivel: 0");
+        userLevel4.setText("Nivel: No se ha definido");
 
         userBankOne4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankOne4.setForeground(new java.awt.Color(100, 100, 100));
@@ -664,7 +664,7 @@ public class account extends javax.swing.JPanel {
         userBankTwo4.setBackground(new java.awt.Color(255, 255, 255));
         userBankTwo4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankTwo4.setForeground(new java.awt.Color(77, 189, 20));
-        userBankTwo4.setText("$0");
+        userBankTwo4.setText("No se ha definido");
 
         javax.swing.GroupLayout inventoryPane5Layout = new javax.swing.GroupLayout(inventoryPane5);
         inventoryPane5.setLayout(inventoryPane5Layout);
@@ -674,10 +674,10 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(userBankOne4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userBankTwo4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userLevel4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(userBankTwo4, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userLevel4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         inventoryPane5Layout.setVerticalGroup(
             inventoryPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,7 +695,7 @@ public class account extends javax.swing.JPanel {
         userLevel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLevel5.setForeground(new java.awt.Color(100, 100, 100));
         userLevel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/level.png"))); // NOI18N
-        userLevel5.setText("Nivel: 0");
+        userLevel5.setText("Nivel: No se ha definido");
 
         userBankOne5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankOne5.setForeground(new java.awt.Color(100, 100, 100));
@@ -705,7 +705,7 @@ public class account extends javax.swing.JPanel {
         userBankTwo5.setBackground(new java.awt.Color(255, 255, 255));
         userBankTwo5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankTwo5.setForeground(new java.awt.Color(77, 189, 20));
-        userBankTwo5.setText("$0");
+        userBankTwo5.setText("No se ha definido");
 
         javax.swing.GroupLayout inventoryPane2Layout = new javax.swing.GroupLayout(inventoryPane2);
         inventoryPane2.setLayout(inventoryPane2Layout);
@@ -715,10 +715,10 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(userBankOne5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userBankTwo5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userLevel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(userBankTwo5, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userLevel5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         inventoryPane2Layout.setVerticalGroup(
             inventoryPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -740,24 +740,21 @@ public class account extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(infoPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(infoPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(infoUser)
-                                .addGap(77, 77, 77))
-                            .addComponent(infoPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(infoPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(infoPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(102, 102, 102))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(infoPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(infoPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(infoPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(infoPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(infoPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(infoUser1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                .addComponent(infoUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(133, 133, 133))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(inventoryPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inventoryPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(9, 9, 9))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
@@ -769,21 +766,29 @@ public class account extends javax.swing.JPanel {
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                                         .addComponent(jLabel4))
-                                    .addComponent(inventoryPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inventoryPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(inventoryPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(inventoryPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(14, 14, 14)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(inventoryPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inventoryPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inventoryPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGap(21, 21, 21)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(userNotification)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(userPaneNotification1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(userAdminPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(userPaneNotification2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(userMemberPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(userPaneNotification4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(userPaneNotification4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(userAdminPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(userSkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

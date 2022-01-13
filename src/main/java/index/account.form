@@ -22,32 +22,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="infoPane5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="infoPane2" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="infoUser" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="77" pref="77" max="77" attributes="0"/>
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="infoPane3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="infoPane1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="infoPane4" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="infoPane5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="infoPane2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="infoPane3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="infoPane4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="infoPane1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="infoUser1" pref="161" max="32767" attributes="0"/>
+                              <Component id="infoUser1" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="inventoryPane2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="inventoryPane1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -60,14 +57,26 @@
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="9" max="32767" attributes="0"/>
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="inventoryPane5" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="inventoryPane4" max="32767" attributes="0"/>
-                                  <Component id="inventoryPane3" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="inventoryPane5" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="inventoryPane4" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="inventoryPane1" max="32767" attributes="0"/>
+                                  <Component id="inventoryPane2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="inventoryPane3" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -76,10 +85,10 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="userPaneNotification1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="userAdminPane" alignment="0" max="32767" attributes="0"/>
                           <Component id="userPaneNotification2" alignment="0" max="32767" attributes="0"/>
                           <Component id="userMemberPane" alignment="0" max="32767" attributes="0"/>
                           <Component id="userPaneNotification4" max="32767" attributes="0"/>
+                          <Component id="userAdminPane" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -99,7 +108,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -192,7 +201,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="userID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="- ID: 0"/>
+        <Property name="text" type="java.lang.String" value="- DB-ID: 0"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="userID.setFont(new loadFont().loadFonts(System.getProperty(&quot;user.dir&quot;) + &quot;/src/main/resources/fonts/Quicksand-SemiBold.ttf&quot;, 20));"/>
@@ -291,9 +300,9 @@
                   <Component id="userLevel" min="-2" pref="94" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userMoneyOne" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="userMoneyTwo" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -371,9 +380,9 @@
                   <Component id="userRep" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userBankOne" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="userBankTwo" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -446,7 +455,7 @@
                   <Component id="userVoz" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userMail" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -509,7 +518,7 @@
                   <Component id="userPhone" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userSex" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -566,7 +575,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="userVip" min="-2" pref="94" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="userIP" min="-2" pref="95" max="-2" attributes="0"/>
+                  <Component id="userIP" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -628,7 +637,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="userJail" min="-2" pref="224" max="-2" attributes="0"/>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -850,10 +859,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="userBankOne1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="userBankTwo1" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="userLevel1" min="-2" pref="94" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="userBankTwo1" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="userLevel1" min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -883,7 +892,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/level.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nivel: 0"/>
+            <Property name="text" type="java.lang.String" value="Nivel: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userBankOne1">
@@ -911,7 +920,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="bd" red="4d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="$0"/>
+            <Property name="text" type="java.lang.String" value="No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -925,10 +934,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="userBankOne2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="userBankTwo2" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="userLevel2" min="-2" pref="94" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="userBankTwo2" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="userLevel2" min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -958,7 +967,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/level.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nivel: 0"/>
+            <Property name="text" type="java.lang.String" value="Nivel: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userBankOne2">
@@ -986,7 +995,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="bd" red="4d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="$0"/>
+            <Property name="text" type="java.lang.String" value="No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -1005,10 +1014,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="userBankOne3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="userBankTwo3" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="userLevel3" min="-2" pref="94" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="userBankTwo3" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="userLevel3" min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1038,7 +1047,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/level.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nivel: 0"/>
+            <Property name="text" type="java.lang.String" value="Nivel: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userBankOne3">
@@ -1066,7 +1075,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="bd" red="4d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="$0"/>
+            <Property name="text" type="java.lang.String" value="No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -1080,10 +1089,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="userBankOne4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="userBankTwo4" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="userLevel4" min="-2" pref="94" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="userBankTwo4" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="userLevel4" min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1113,7 +1122,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/level.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nivel: 0"/>
+            <Property name="text" type="java.lang.String" value="Nivel: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userBankOne4">
@@ -1141,7 +1150,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="bd" red="4d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="$0"/>
+            <Property name="text" type="java.lang.String" value="No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -1160,10 +1169,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="userBankOne5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="userBankTwo5" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="userLevel5" min="-2" pref="94" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="userBankTwo5" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="userLevel5" min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1193,7 +1202,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/level.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nivel: 0"/>
+            <Property name="text" type="java.lang.String" value="Nivel: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userBankOne5">
@@ -1221,7 +1230,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="bd" red="4d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="$0"/>
+            <Property name="text" type="java.lang.String" value="No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>
