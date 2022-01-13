@@ -3,6 +3,7 @@ package resource;
 import index.run;
 import java.awt.BorderLayout;
 import java.awt.geom.RoundRectangle2D;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -14,7 +15,7 @@ public class showDialog extends JDialog implements interfaces.IShowDialog {
     private JOptionPane JOP;
 
     @Override
-    public void message(String message, String image, String[] buttons) {
+    public void message(String message, URL image, String[] buttons) {
         UIManager.put("Panel.background", new ColorUIResource(228, 230, 235));
         JDialog dialog = new JDialog(run.window, true);
 

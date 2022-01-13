@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.net.URL;
+
 public interface IShowDialog {
-    void message(String message, String image, String[] buttons);
+    void message(String message, URL image, String[] buttons);
 }

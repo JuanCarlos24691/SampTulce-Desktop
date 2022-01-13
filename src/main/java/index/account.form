@@ -51,6 +51,18 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="inventoryPane5" alignment="0" max="32767" attributes="0"/>
                                   <Component id="inventoryPane4" max="32767" attributes="0"/>
                                   <Component id="inventoryPane3" max="32767" attributes="0"/>
@@ -88,19 +100,6 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -288,9 +287,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="userLevel" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="userLevel" min="-2" pref="94" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userMoneyOne" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="userMoneyTwo" pref="0" max="32767" attributes="0"/>
@@ -324,7 +323,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/level.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nivel: 0"/>
+            <Property name="text" type="java.lang.String" value="Nivel: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userMoneyOne">
@@ -352,7 +351,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="bd" red="4d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="$00000"/>
+            <Property name="text" type="java.lang.String" value="No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -368,9 +367,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="userRep" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="userRep" min="-2" pref="92" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userBankOne" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="userBankTwo" pref="0" max="32767" attributes="0"/>
@@ -404,7 +403,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/rep.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Rep: 0"/>
+            <Property name="text" type="java.lang.String" value="Rep: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userBankOne">
@@ -432,7 +431,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="14" green="bd" red="4d" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="$000000"/>
+            <Property name="text" type="java.lang.String" value="No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -443,9 +442,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="userVoz" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="userVoz" min="-2" pref="92" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userMail" pref="0" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -476,7 +475,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/voz.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Edad: 00000000"/>
+            <Property name="text" type="java.lang.String" value="Edad: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userMail">
@@ -506,9 +505,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="userPhone" pref="0" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="userPhone" min="-2" pref="92" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userSex" pref="0" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -564,11 +563,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="userVip" pref="99" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="userIP" pref="95" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="userVip" min="-2" pref="94" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="userIP" min="-2" pref="95" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -597,7 +596,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/ip-address.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="IP: 127.0.0.1"/>
+            <Property name="text" type="java.lang.String" value="IP: No se ha definido"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userVip">
@@ -611,7 +610,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/vip.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="VIP: No tiene"/>
+            <Property name="text" type="java.lang.String" value="VIP: No se ha definido"/>
           </Properties>
         </Component>
       </SubComponents>

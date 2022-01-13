@@ -2,9 +2,8 @@ package index;
 
 import interfaces.IManagerData;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.sql.SQLException;
-import resource.borderRounder;
+import java.util.Arrays;
 import resource.loadFont;
 import resource.managerData;
 import resource.showDialog;
@@ -14,7 +13,7 @@ public class login extends javax.swing.JPanel {
     // Object
     private final IManagerData OManagerData = new managerData();
     
-    public static int USER_ID;
+    public static String USER_DB;
 
     public login() {
         
@@ -22,6 +21,7 @@ public class login extends javax.swing.JPanel {
         run.window.setLocationRelativeTo(null);
         run.window.setResizable(false);
         run.window.setTitle("Ingresar - SampTulce");
+        
         initComponents();
     }
 
@@ -134,26 +134,25 @@ public class login extends javax.swing.JPanel {
 
     private void goAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goAccountActionPerformed
         if (evt.getSource() == this.goAccount) {
-            if (this.userName.getText().length() > 0 && this.userName.getText().length() <= 25 && this.password.getPassword().length > 0 && this.password.getPassword().length <= 25 && this.userName.getText().contains("_")) {
+            if (!this.userName.getText().isEmpty() && this.userName.getText().length() <= 25 && !Arrays.toString(this.password.getPassword()).isEmpty() && this.password.getPassword().length <= 25 && this.userName.getText().contains("_")) {
                
                 try {
-                    this.OManagerData.select("SELECT id, name, password FROM accounts WHERE name = '" + this.userName.getText() + "'");
+                    this.OManagerData.select("SELECT name, password FROM accounts WHERE name = '" + this.userName.getText() + "'");
                     
                     if (this.OManagerData.getRs().next()) {
                         if (this.OManagerData.getRs().getString("name").equalsIgnoreCase(this.userName.getText()) && this.OManagerData.getRs().getString("password").equals(new String(this.password.getPassword()))) {
                             
-                            login.USER_ID = this.OManagerData.getRs().getInt("id");
+                            login.USER_DB = this.OManagerData.getRs().getString("name");
                             
                             this.setVisible(false);
                             run.window.remove(this);
                             
                             run.window.add(new account(), BorderLayout.CENTER);
                         } else {
-                            new showDialog().message("Los datos que haz ingresado son erroneos\nPor favor vuelve a intentalo", System.getProperty("user.dir") + "/container/images/cancel.png", new String[]{"Aceptar"});
+                            new showDialog().message("Los datos que haz ingresado son erroneos\nPor favor vuelve a intentalo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
                         }
                     } else {
-                        new showDialog().message("Esta cuenta no existe, Por favor vuelve a intentarlo", System.getProperty("user.dir") + "/container/images/cancel.png", new String[]{"Aceptar"});
-                        System.out.println("¡La cuenta no existe!");
+                        new showDialog().message("Esta cuenta no existe, Por favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace(System.out);
@@ -162,9 +161,9 @@ public class login extends javax.swing.JPanel {
                 }
             } else {
                 if (this.userName.getText().length() > 25 || this.password.getPassword().length > 25 || this.userName.getText().length() == 0 || this.password.getPassword().length == 0) {
-                    new showDialog().message("Uno de los campos tiene una longitud demasiado grande, El maximo es de 25 caracteres\nPor favor vuelve a intentarlo", System.getProperty("user.dir") + "/container/images/cancel.png", new String[]{"Aceptar"});
+                    new showDialog().message("Uno de los campos tiene una longitud demasiado grande, El maximo es de 25 caracteres\nPor favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
                 } else if (!this.userName.getText().contains("_")){
-                    new showDialog().message("El formato de nombre no es correcto(Formato: Nombre_Apellido)\nPor favor vuelve a intentarlo", System.getProperty("user.dir") + "/container/images/cancel.png", new String[]{"Aceptar"});
+                    new showDialog().message("El formato de nombre no es correcto(Formato: Nombre_Apellido)\nPor favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
                 }
             }
         }

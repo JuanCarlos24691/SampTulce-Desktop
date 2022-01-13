@@ -18,6 +18,7 @@ public class account extends javax.swing.JPanel {
         run.window.setLocationRelativeTo(null);
         run.window.setResizable(true);
         run.window.setTitle("Cuenta - SampTulce");
+        
         initComponents();
         this.dataAccount();
         this.userDesing();
@@ -41,13 +42,13 @@ public class account extends javax.swing.JPanel {
 
     private void dataAccount() throws SQLException {
 
-        this.OManagerData.select("SELECT name, admin, level, cash, sex, model, priglas, adminpass, member, rank, phone, exp, warn, mail, ip, vip, rep, voz, bank  FROM accounts WHERE id = '" + login.USER_ID + "'");
+        this.OManagerData.select("SELECT name, id, admin, level, cash, sex, model, priglas, adminpass, member, rank, phone, exp, warn, mail, ip, vip, rep, voz, bank  FROM accounts WHERE name = '" + login.USER_DB + "'");
 
         if (this.OManagerData.getRs().next()) {
 
             // Información del personaje
             this.userName.setText(this.OManagerData.getRs().getString("name"));
-            this.userID.setText("- ID: " + Integer.toString(login.USER_ID));
+            this.userID.setText("- DB-ID: " + this.OManagerData.getRs().getString("id"));
 
             this.userLevel.setText("Nivel: " + this.OManagerData.getRs().getString("level"));
             this.userRep.setText("Rep: " + this.OManagerData.getRs().getString("rep"));
@@ -249,7 +250,7 @@ public class account extends javax.swing.JPanel {
         userLevel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userLevel.setForeground(new java.awt.Color(100, 100, 100));
         userLevel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/level.png"))); // NOI18N
-        userLevel.setText("Nivel: 0");
+        userLevel.setText("Nivel: No se ha definido");
 
         userMoneyOne.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userMoneyOne.setForeground(new java.awt.Color(100, 100, 100));
@@ -259,7 +260,7 @@ public class account extends javax.swing.JPanel {
         userMoneyTwo.setBackground(new java.awt.Color(255, 255, 255));
         userMoneyTwo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userMoneyTwo.setForeground(new java.awt.Color(77, 189, 20));
-        userMoneyTwo.setText("$00000");
+        userMoneyTwo.setText("No se ha definido");
 
         javax.swing.GroupLayout infoPane1Layout = new javax.swing.GroupLayout(infoPane1);
         infoPane1.setLayout(infoPane1Layout);
@@ -267,8 +268,8 @@ public class account extends javax.swing.JPanel {
             infoPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(userLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userMoneyOne)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userMoneyTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -290,7 +291,7 @@ public class account extends javax.swing.JPanel {
         userRep.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userRep.setForeground(new java.awt.Color(100, 100, 100));
         userRep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rep.png"))); // NOI18N
-        userRep.setText("Rep: 0");
+        userRep.setText("Rep: No se ha definido");
 
         userBankOne.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankOne.setForeground(new java.awt.Color(100, 100, 100));
@@ -300,7 +301,7 @@ public class account extends javax.swing.JPanel {
         userBankTwo.setBackground(new java.awt.Color(255, 255, 255));
         userBankTwo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userBankTwo.setForeground(new java.awt.Color(77, 189, 20));
-        userBankTwo.setText("$000000");
+        userBankTwo.setText("No se ha definido");
 
         javax.swing.GroupLayout infoPane2Layout = new javax.swing.GroupLayout(infoPane2);
         infoPane2.setLayout(infoPane2Layout);
@@ -308,8 +309,8 @@ public class account extends javax.swing.JPanel {
             infoPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userRep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(userRep, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userBankOne)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userBankTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -329,7 +330,7 @@ public class account extends javax.swing.JPanel {
         userVoz.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userVoz.setForeground(new java.awt.Color(100, 100, 100));
         userVoz.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/voz.png"))); // NOI18N
-        userVoz.setText("Edad: 00000000");
+        userVoz.setText("Edad: No se ha definido");
 
         userMail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userMail.setForeground(new java.awt.Color(100, 100, 100));
@@ -342,8 +343,8 @@ public class account extends javax.swing.JPanel {
             infoPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPane3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userVoz, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userVoz, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userMail, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -375,8 +376,8 @@ public class account extends javax.swing.JPanel {
             infoPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPane4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(userSex, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -393,12 +394,12 @@ public class account extends javax.swing.JPanel {
         userIP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userIP.setForeground(new java.awt.Color(100, 100, 100));
         userIP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ip-address.png"))); // NOI18N
-        userIP.setText("IP: 127.0.0.1");
+        userIP.setText("IP: No se ha definido");
 
         userVip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         userVip.setForeground(new java.awt.Color(100, 100, 100));
         userVip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vip.png"))); // NOI18N
-        userVip.setText("VIP: No tiene");
+        userVip.setText("VIP: No se ha definido");
 
         javax.swing.GroupLayout infoPane5Layout = new javax.swing.GroupLayout(infoPane5);
         infoPane5.setLayout(infoPane5Layout);
@@ -406,9 +407,9 @@ public class account extends javax.swing.JPanel {
             infoPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPane5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userVip, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userIP, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(userVip, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userIP, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         infoPane5Layout.setVerticalGroup(
@@ -759,6 +760,17 @@ public class account extends javax.swing.JPanel {
                                 .addGap(9, 9, 9))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel4))
                                     .addComponent(inventoryPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inventoryPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inventoryPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -785,18 +797,6 @@ public class account extends javax.swing.JPanel {
                                 .addComponent(userID)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(255, 255, 255)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
