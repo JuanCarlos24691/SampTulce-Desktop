@@ -7,11 +7,11 @@ import interfaces.IConnectDatabase;
 
 public class connectDatabase implements IConnectDatabase{
     
-    private final String SERVER =   "127.0.0.1";
+    private final String SERVER =   "52.167.129.168";
     private final String PORT =     "3306";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "";
-    private final String DATABASE = "db2";
+    private final String USERNAME = "server";
+    private final String PASSWORD = "Divclassphp900";
+    private final String DATABASE = "server";
 
     private Connection conection;
     
