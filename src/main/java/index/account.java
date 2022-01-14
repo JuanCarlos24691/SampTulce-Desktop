@@ -115,24 +115,21 @@ public class account extends javax.swing.JPanel {
 
                 int rank = this.OManagerData.getRs().getInt("rank");
                 int member = this.OManagerData.getRs().getInt("member");
-                
-                if (this.OManagerData.getRs().getInt("warn") > 3 || this.OManagerData.getRs().getInt("warn") == 0) {
+                int warn = this.OManagerData.getRs().getInt("warn");
+
+                // New select
+                this.OManagerData.select("SELECT name, whobanned, bandate, reason FROM bans WHERE name = '" + this.OManagerData.getRs().getString("name") + "'");
+
+                if (this.OManagerData.getRs().next()) {
+                    this.userWarn.setText("Fuiste baneado por " + this.OManagerData.getRs().getString("whobanned") + ", Razon: " + this.OManagerData.getRs().getString("reason") + " (Fecha: " + this.OManagerData.getRs().getString("bandate") + ")");
+                } else if (warn > 3 || warn == 0) {
                     this.userPaneWarn.setVisible(false);
                     this.remove(this.userPaneWarn);
-                } else if (this.OManagerData.getRs().getInt("warn") < 3) {
-                    this.userWarn.setText("Advertencias: " + this.OManagerData.getRs().getInt("warn") + "(Sí, llegas a las 3 advertencias seras baneado por 10 días)");
-                } else if (this.OManagerData.getRs().getInt("warn") == 3) {
-                    this.OManagerData.select("SELECT name, whobanned, bandate, reason FROM bans WHERE name = '" + this.OManagerData.getRs().getString("name") + "'");
-                    
-                    if (this.OManagerData.getRs().next()) {
-                        this.userWarn.setText("Fuiste baneado por " + this.OManagerData.getRs().getString("whobanned") + ", Razon: " + this.OManagerData.getRs().getString("reason") + " (Fecha: " + this.OManagerData.getRs().getString("bandate") + ")");
-                    } else {
-                        this.userPaneWarn.setVisible(false);
-                        this.remove(this.userPaneWarn);                        
-                    }
+                } else if (warn < 3) {
+                    this.userWarn.setText("Advertencias: " + warn + "(Sí, llegas a las 3 advertencias seras baneado por 10 días)");
                 }
-                
-                // New conection
+
+                // New select
                 this.OManagerData.select("SELECT id, name, rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9, rank10 FROM fraction WHERE id = '" + member + "'");
 
                 if (this.OManagerData.getRs().next()) {
@@ -141,8 +138,7 @@ public class account extends javax.swing.JPanel {
                     this.userMemberPane.setVisible(false);
                     this.remove(this.userMemberPane);
                 }
-                
-                
+
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -916,7 +912,6 @@ public class account extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_exitAppMouseClicked
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exitApp;
