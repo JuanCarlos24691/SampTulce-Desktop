@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import interfaces.IConnectDatabase;
 
-public class connectDatabase implements IConnectDatabase{
+public class connectDatabase implements IConnectDatabase {
     
     private final String SERVER =   "52.167.129.168";
     private final String PORT =     "3306";
