@@ -3,8 +3,6 @@ package index;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import resource.borderRounder;
 import resource.loadFont;
@@ -37,13 +35,14 @@ public class account extends javax.swing.JPanel {
         this.userVip.setToolTipText(this.userVip.getText());
         this.userIP.setToolTipText(this.userIP.getText());
         this.userAdmin.setToolTipText(this.userAdmin.getText());
+        this.userWarn.setToolTipText(this.userWarn.getText());
         this.userMember.setToolTipText(this.userMember.getText());
     }
 
     private void dataAccount() {
 
         try {
-            this.OManagerData.select("SELECT model, name, id, level, rep, cash, bank, voz, sex, phone, mail, vip, ip, admin, member, rank FROM accounts WHERE name = '" + login.USER_DB + "'");
+            this.OManagerData.select("SELECT model, name, id, level, rep, cash, bank, voz, sex, phone, mail, vip, ip, admin, warn, member, rank FROM accounts WHERE name = '" + login.USER_DB + "'");
 
             if (this.OManagerData.getRs().next()) {
 
@@ -115,9 +114,26 @@ public class account extends javax.swing.JPanel {
                 }
 
                 int rank = this.OManagerData.getRs().getInt("rank");
+                int member = this.OManagerData.getRs().getInt("member");
+                
+                if (this.OManagerData.getRs().getInt("warn") > 3 || this.OManagerData.getRs().getInt("warn") == 0) {
+                    this.userPaneWarn.setVisible(false);
+                    this.remove(this.userPaneWarn);
+                } else if (this.OManagerData.getRs().getInt("warn") < 3) {
+                    this.userWarn.setText("Advertencias: " + this.OManagerData.getRs().getInt("warn") + "(Sí, llegas a las 3 advertencias seras baneado por 10 días)");
+                } else if (this.OManagerData.getRs().getInt("warn") == 3) {
+                    this.OManagerData.select("SELECT name, whobanned, bandate, reason FROM bans WHERE name = '" + this.OManagerData.getRs().getString("name") + "'");
+                    
+                    if (this.OManagerData.getRs().next()) {
+                        this.userWarn.setText("Fuiste baneado por " + this.OManagerData.getRs().getString("whobanned") + ", Razon: " + this.OManagerData.getRs().getString("reason") + " (Fecha: " + this.OManagerData.getRs().getString("bandate") + ")");
+                    } else {
+                        this.userPaneWarn.setVisible(false);
+                        this.remove(this.userPaneWarn);                        
+                    }
+                }
                 
                 // New conection
-                this.OManagerData.select("SELECT id, name, rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9, rank10 FROM fraction WHERE id = '" + this.OManagerData.getRs().getInt("member") + "'");
+                this.OManagerData.select("SELECT id, name, rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9, rank10 FROM fraction WHERE id = '" + member + "'");
 
                 if (this.OManagerData.getRs().next()) {
                     this.userMember.setText("Ingresaste como: " + this.OManagerData.getRs().getString("name") + " (" + this.OManagerData.getRs().getString("rank" + rank) + ")");
@@ -125,6 +141,8 @@ public class account extends javax.swing.JPanel {
                     this.userMemberPane.setVisible(false);
                     this.remove(this.userMemberPane);
                 }
+                
+                
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -162,8 +180,8 @@ public class account extends javax.swing.JPanel {
         infoPane5 = new javax.swing.JPanel();
         userIP = new javax.swing.JLabel();
         userVip = new javax.swing.JLabel();
-        userPaneNotification1 = new javax.swing.JPanel();
-        userJail = new javax.swing.JLabel();
+        userPaneWarn = new javax.swing.JPanel();
+        userWarn = new javax.swing.JLabel();
         userPaneNotification2 = new javax.swing.JPanel();
         userAdmin2 = new javax.swing.JLabel();
         userMemberPane = new javax.swing.JPanel();
@@ -220,10 +238,10 @@ public class account extends javax.swing.JPanel {
         infoUser.setForeground(new java.awt.Color(102, 102, 102));
         infoUser.setText("INFORMACIÓN");
 
-        userAdminPane.setBackground(new java.awt.Color(122, 194, 255));
+        userAdminPane.setBackground(new java.awt.Color(209, 237, 255));
 
         userAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userAdmin.setForeground(new java.awt.Color(255, 255, 255));
+        userAdmin.setForeground(new java.awt.Color(100, 100, 100));
         userAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/admin.png"))); // NOI18N
         userAdmin.setText("Ingresaste como: No se ha espesificado");
 
@@ -423,33 +441,34 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        userPaneNotification1.setBackground(new java.awt.Color(255, 122, 122));
+        userPaneWarn.setBackground(new java.awt.Color(255, 209, 209));
 
-        userJail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userJail.setForeground(new java.awt.Color(255, 255, 255));
-        userJail.setText("Ingresaste como: No se ha espesificado");
+        userWarn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        userWarn.setForeground(new java.awt.Color(100, 100, 100));
+        userWarn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/warn.png"))); // NOI18N
+        userWarn.setText("Advertencias: No se ha espesificado");
 
-        javax.swing.GroupLayout userPaneNotification1Layout = new javax.swing.GroupLayout(userPaneNotification1);
-        userPaneNotification1.setLayout(userPaneNotification1Layout);
-        userPaneNotification1Layout.setHorizontalGroup(
-            userPaneNotification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userPaneNotification1Layout.createSequentialGroup()
+        javax.swing.GroupLayout userPaneWarnLayout = new javax.swing.GroupLayout(userPaneWarn);
+        userPaneWarn.setLayout(userPaneWarnLayout);
+        userPaneWarnLayout.setHorizontalGroup(
+            userPaneWarnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userPaneWarnLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(userJail, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
-        );
-        userPaneNotification1Layout.setVerticalGroup(
-            userPaneNotification1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userPaneNotification1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userJail)
+                .addComponent(userWarn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
+        userPaneWarnLayout.setVerticalGroup(
+            userPaneWarnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userPaneWarnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(userWarn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        userPaneNotification2.setBackground(new java.awt.Color(122, 255, 144));
+        userPaneNotification2.setBackground(new java.awt.Color(217, 255, 209));
 
         userAdmin2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userAdmin2.setForeground(new java.awt.Color(255, 255, 255));
+        userAdmin2.setForeground(new java.awt.Color(100, 100, 100));
         userAdmin2.setText("Ingresaste como: No se ha espesificado");
 
         javax.swing.GroupLayout userPaneNotification2Layout = new javax.swing.GroupLayout(userPaneNotification2);
@@ -469,10 +488,10 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        userMemberPane.setBackground(new java.awt.Color(149, 122, 255));
+        userMemberPane.setBackground(new java.awt.Color(209, 210, 255));
 
         userMember.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userMember.setForeground(new java.awt.Color(255, 255, 255));
+        userMember.setForeground(new java.awt.Color(100, 100, 100));
         userMember.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/member.png"))); // NOI18N
         userMember.setText("Ingresaste como: No se ha espesificado");
 
@@ -487,16 +506,16 @@ public class account extends javax.swing.JPanel {
         );
         userMemberPaneLayout.setVerticalGroup(
             userMemberPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userMemberPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(userMemberPaneLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(userMember)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        userPaneNotification4.setBackground(new java.awt.Color(175, 128, 81));
+        userPaneNotification4.setBackground(new java.awt.Color(255, 240, 209));
 
         userAdmin4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        userAdmin4.setForeground(new java.awt.Color(255, 255, 255));
+        userAdmin4.setForeground(new java.awt.Color(100, 100, 100));
         userAdmin4.setText("Ingresaste como: No se ha espesificado");
 
         javax.swing.GroupLayout userPaneNotification4Layout = new javax.swing.GroupLayout(userPaneNotification4);
@@ -775,9 +794,9 @@ public class account extends javax.swing.JPanel {
                                 .addGap(101, 101, 101))
                             .addComponent(userPaneNotification4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(userPaneNotification2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(userPaneNotification1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(userMemberPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(userAdminPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(userAdminPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(userPaneWarn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(275, 275, 275)
@@ -797,40 +816,18 @@ public class account extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userSkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(userSkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(userName)
                             .addComponent(userID))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hideSesion)))
-                .addGap(37, 37, 37)
+                        .addComponent(hideSesion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(infoUser1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(userNotification)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userAdminPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userMemberPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userPaneNotification1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userPaneNotification2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userPaneNotification4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(infoUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -842,7 +839,35 @@ public class account extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(infoPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(infoPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(infoPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(infoUser1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inventoryPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inventoryPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(userNotification)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(userAdminPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(userPaneWarn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userMemberPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inventoryPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(inventoryPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inventoryPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(userPaneNotification2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(userPaneNotification4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -900,7 +925,6 @@ public class account extends javax.swing.JPanel {
     private javax.swing.JLabel userBankTwo5;
     private javax.swing.JLabel userID;
     private javax.swing.JLabel userIP;
-    private javax.swing.JLabel userJail;
     private javax.swing.JLabel userLevel;
     private javax.swing.JLabel userLevel1;
     private javax.swing.JLabel userLevel2;
@@ -914,14 +938,15 @@ public class account extends javax.swing.JPanel {
     private javax.swing.JLabel userMoneyTwo;
     private javax.swing.JLabel userName;
     private javax.swing.JLabel userNotification;
-    private javax.swing.JPanel userPaneNotification1;
     private javax.swing.JPanel userPaneNotification2;
     private javax.swing.JPanel userPaneNotification4;
+    private javax.swing.JPanel userPaneWarn;
     private javax.swing.JLabel userPhone;
     private javax.swing.JLabel userRep;
     private javax.swing.JLabel userSex;
     private javax.swing.JLabel userSkin;
     private javax.swing.JLabel userVip;
     private javax.swing.JLabel userVoz;
+    private javax.swing.JLabel userWarn;
     // End of variables declaration//GEN-END:variables
 }
