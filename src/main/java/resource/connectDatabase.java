@@ -16,9 +16,14 @@ public class connectDatabase implements IConnectDatabase{
     private Connection conection;
     
     @Override
-    public Connection connect() throws SQLException {
+    public Connection connect() {
 
-        this.conection = DriverManager.getConnection("jdbc:mysql://" + this.SERVER + ":" + this.PORT + "/" + this.DATABASE + "?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", this.USERNAME, this.PASSWORD);
+        try {
+            this.conection = DriverManager.getConnection("jdbc:mysql://" + this.SERVER + ":" + this.PORT + "/" + this.DATABASE + "?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", this.USERNAME, this.PASSWORD);
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            System.exit(1);
+        }
         return conection;
     }
 }

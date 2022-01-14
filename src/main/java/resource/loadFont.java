@@ -22,6 +22,7 @@ public class loadFont implements ILoadFont {
             font = font.deriveFont(Font.PLAIN, width);
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
+            System.exit(1);
         }
         return font;
     }

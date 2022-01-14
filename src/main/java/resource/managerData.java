@@ -34,6 +34,7 @@ public class managerData implements IManagerData{
             }
         } catch(SQLException ex) {
             ex.printStackTrace(System.out);
+            System.exit(1);
         }
         
         this.pstmt = null;

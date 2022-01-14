@@ -39,8 +39,4 @@ public class showDialog extends JDialog implements interfaces.IShowDialog {
         JOP.setBackground(new ColorUIResource(228, 230, 235));
         dialog.setVisible(true);
     }
-
-    public JOptionPane getJOP() {
-        return this.JOP;
-    }
 }
