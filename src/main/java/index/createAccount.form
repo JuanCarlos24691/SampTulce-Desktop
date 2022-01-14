@@ -128,9 +128,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userNameMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="password">
       <Properties>
@@ -149,9 +146,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="passwordMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="sex">
       <Properties>
@@ -195,9 +189,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="invitedMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="mail">
       <Properties>
@@ -216,9 +207,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mailMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="createAccount">
       <Properties>
@@ -233,9 +221,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Registrarse"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createAccountActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="loginTextOne">
       <Properties>
@@ -282,9 +267,6 @@
           <Border info="null"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userVozMouseClicked"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

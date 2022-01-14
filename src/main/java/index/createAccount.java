@@ -1,20 +1,21 @@
 package index;
 
-import interfaces.IManagerData;
+//import interfaces.IManagerData;
 import java.awt.BorderLayout;
 import resource.loadFont;
-import resource.managerData;
+//import resource.managerData;
 
 public class createAccount extends javax.swing.JPanel {
     
     // Object
-    private IManagerData OManagerData = new managerData();
+    //private IManagerData OManagerData = new managerData();
     
     public createAccount() {
         
         run.window.setSize(650, 450);
         run.window.setResizable(false);
         run.window.setTitle("Registrarse - SampTulce");
+        
         initComponents();
     }
 
@@ -44,11 +45,6 @@ public class createAccount extends javax.swing.JPanel {
         userName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         userName.setText("Nombre de usuario");
         userName.setBorder(null);
-        userName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userNameMouseClicked(evt);
-            }
-        });
 
         password.setBackground(new java.awt.Color(245, 245, 245));
         password.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -56,11 +52,6 @@ public class createAccount extends javax.swing.JPanel {
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setText("012345678");
         password.setBorder(null);
-        password.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                passwordMouseClicked(evt);
-            }
-        });
 
         sex.setBackground(new java.awt.Color(245, 245, 245));
         sex.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -74,11 +65,6 @@ public class createAccount extends javax.swing.JPanel {
         invited.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         invited.setText("¿Te han invitado? ");
         invited.setBorder(null);
-        invited.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                invitedMouseClicked(evt);
-            }
-        });
 
         mail.setBackground(new java.awt.Color(245, 245, 245));
         mail.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -86,21 +72,11 @@ public class createAccount extends javax.swing.JPanel {
         mail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         mail.setText("Correo electronico");
         mail.setBorder(null);
-        mail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mailMouseClicked(evt);
-            }
-        });
 
         createAccount.setBackground(new java.awt.Color(255, 255, 255));
         createAccount.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         createAccount.setForeground(new java.awt.Color(0, 117, 239));
         createAccount.setText("Registrarse");
-        createAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createAccountActionPerformed(evt);
-            }
-        });
 
         loginTextOne.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         loginTextOne.setForeground(new java.awt.Color(100, 100, 100));
@@ -122,11 +98,6 @@ public class createAccount extends javax.swing.JPanel {
         userVoz.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         userVoz.setText("Edad");
         userVoz.setBorder(null);
-        userVoz.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userVozMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -194,66 +165,13 @@ public class createAccount extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userNameMouseClicked
-        if (evt.getSource() == this.userName) {
-            if (this.userName.getText().equals("Nombre de usuario")) {
-                this.userName.setText(null);
-            }
-        }
-    }//GEN-LAST:event_userNameMouseClicked
-
-    private void passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordMouseClicked
-        if (evt.getSource() == this.password) {
-            if (new String(this.password.getPassword()).equals("012345678")) {
-                this.password.setText(null);
-            }
-        }
-    }//GEN-LAST:event_passwordMouseClicked
-
-    private void invitedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invitedMouseClicked
-        if (evt.getSource() == this.invited) {
-            if (this.invited.getText().equals("¿Te han invitado? ")) {
-                this.invited.setText(null);
-            }
-        }
-    }//GEN-LAST:event_invitedMouseClicked
-
-    private void mailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mailMouseClicked
-        if (evt.getSource() == this.mail) {
-            if (this.mail.getText().equals("Correo electronico")) {
-                this.mail.setText(null);
-            }
-        }
-    }//GEN-LAST:event_mailMouseClicked
-
     private void loginTextTowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginTextTowMouseClicked
         if (evt.getSource() == this.loginTextTow) {
             this.setVisible(false);
             run.window.remove(this);
-
             run.window.add(new login(), BorderLayout.CENTER);
         }
     }//GEN-LAST:event_loginTextTowMouseClicked
-
-    private void createAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountActionPerformed
-        if (evt.getSource() == this.createAccount) {
-            if (this.userName.getText().length() > 0 && new String(this.password.getPassword()).length() > 0 && this.invited.getText().length() > 0 && this.mail.getText().length() > 0) {
-                
-               // this.conection.exceuteQuery("INSERT INTO accounts (name, password, level, sex, model, priglas, mail, member, rank, leader, phone, helper, exp, warn, phonebal, job, mash, zakon, wanted, mats, drugs, adr, ig, reg, mute, hmute, work, warnskok, warndate, jail, jailtime, sch, spawn, bank, vip, ar, ing, kan, apt, mask, payday) VALUES ('Jesu_Ospino', '012345678', '1', '0', '127', 'nose', 'jajaaa@gmail.com', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');", false);
-                //this.conection.closeConnections();
-                
-                /*this.conection.exceuteQuery("INSERT INTO accounts (name, password, level, sex, model, priglas, mail, member, rank, leader, phone, helper, exp, warn, phonebal, job, mash) VALUES ('" + 
-                        this.userName.getText() + "', '" + new String(this.password.getPassword()) + "', '1', '1' ,'127', '" + 
-                        this.invited.getText() + "', '" + this.mail.getText() + "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')", false);*/
-            } else {
-                System.out.println("¡Toos los campos deben estar rellenos!");
-            }
-        }
-    }//GEN-LAST:event_createAccountActionPerformed
-
-    private void userVozMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userVozMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userVozMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createAccount;

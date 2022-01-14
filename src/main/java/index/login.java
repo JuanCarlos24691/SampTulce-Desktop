@@ -156,6 +156,7 @@ public class login extends javax.swing.JPanel {
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace(System.out);
+                    System.exit(1);
                 } finally {
                     this.OManagerData.SQLClose();
                 }
@@ -173,7 +174,6 @@ public class login extends javax.swing.JPanel {
         if (evt.getSource() == this.nowAccountTwo) {
             this.setVisible(false);
             run.window.remove(this);
-            
             run.window.add(new createAccount(), BorderLayout.CENTER);
         }
     }//GEN-LAST:event_nowAccountTwoMouseClicked

@@ -3,6 +3,8 @@ package index;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import resource.borderRounder;
 import resource.loadFont;
@@ -18,7 +20,7 @@ public class account extends javax.swing.JPanel {
         run.window.setLocationRelativeTo(null);
         run.window.setResizable(true);
         run.window.setTitle("Cuenta - SampTulce");
-        
+
         initComponents();
         this.dataAccount();
         this.userDesing();
@@ -38,96 +40,98 @@ public class account extends javax.swing.JPanel {
         this.userMember.setToolTipText(this.userMember.getText());
     }
 
-    private void dataAccount() throws SQLException {
+    private void dataAccount() {
 
-        this.OManagerData.select("SELECT name, id, level, rep, cash, bank, voz, sex, phone, mail, vip, ip, admin, rank FROM accounts WHERE name = '" + login.USER_DB + "'");
-
-        if (this.OManagerData.getRs().next()) {
-
-            // Información del personaje
-            ImageIcon rescaleSkin = new javax.swing.ImageIcon(getClass().getResource("/PJ/_" + this.OManagerData.getRs().getInt("model") + ".png"));
-            rescaleSkin = new ImageIcon(rescaleSkin.getImage().getScaledInstance(80, 80, Image.SCALE_AREA_AVERAGING));
-            this.userSkin.setIcon(rescaleSkin);
-            this.userSkin.setBorder(new borderRounder(new java.awt.Color(150, 150, 150), 2, 80, 80));
-            
-            this.userName.setText(this.OManagerData.getRs().getString("name"));
-            this.userID.setText("- DB-ID: " + this.OManagerData.getRs().getString("id"));
-
-            this.userLevel.setText("Nivel: " + this.OManagerData.getRs().getString("level"));
-            this.userRep.setText("Rep: " + this.OManagerData.getRs().getString("rep"));
-            this.userMoneyTwo.setText("$" + this.OManagerData.getRs().getInt("cash"));
-            this.userBankTwo.setText("$" + this.OManagerData.getRs().getInt("bank"));
-            this.userVoz.setText("Edad: +" + this.OManagerData.getRs().getString("voz"));
-
-            switch (this.OManagerData.getRs().getInt("sex")) {
-                case 1 ->
-                    this.userSex.setText("Sexo: Hombre");
-                case 2 ->
-                    this.userSex.setText("Sexo: Mujer");
-                case 3 ->
-                    this.userSex.setText("Sexo: Travesti");
-                case 4 ->
-                    this.userSex.setText("Sexo: Marimacho");
-                default ->
-                    this.userSex.setText("Sexo: Desconocido");
-            }
-            
-            if (this.OManagerData.getRs().getInt("phone") != 0) {
-                this.userPhone.setText("Tel: " + this.OManagerData.getRs().getString("phone"));
-            } else if (this.OManagerData.getRs().getInt("phone") == 0) {
-                this.userPhone.setText("Tel: No tiene");
-            }
-
-            this.userMail.setText("Gmail: " + this.OManagerData.getRs().getString("mail"));
-
-            if (this.OManagerData.getRs().getInt("vip") != 0) {
-                this.userVip.setText("VIP: Activo");
-            } else if (this.OManagerData.getRs().getInt("vip") == 0) {
-                this.userVip.setText("VIP: No tiene");
-            }
-
-            this.userIP.setText("IP: " + this.OManagerData.getRs().getInt("ip"));
-
-            // Notificaciones
-            if (this.OManagerData.getRs().getInt("admin") > 6 || this.OManagerData.getRs().getInt("admin") == 0) {
-                this.userAdminPane.setVisible(false);
-                this.remove(this.userAdminPane);
-                
-            } else if (this.OManagerData.getRs().getInt("admin") != 0) {
-                
-                switch (this.OManagerData.getRs().getInt("admin")) {
-                    case 1 ->
-                        this.userAdmin.setText("Ingresaste como: Ayudante");
-                    case 2 ->
-                        this.userAdmin.setText("Ingresaste como: Moderador");
-                    case 3 ->
-                        this.userAdmin.setText("Ingresaste como: Moderador Plus");
-                    case 4 ->
-                        this.userAdmin.setText("Ingresaste como: Super moderador");
-                    case 5 ->
-                        this.userAdmin.setText("Ingresaste como: Soporte");
-                    case 6 ->
-                        this.userAdmin.setText("Ingresaste como: Administrador");
-                }
-            }
-            
-            int rank = this.OManagerData.getRs().getInt("rank");
-            
-            // New conection
-            this.OManagerData.select("SELECT id, name, leader, rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9, rank10 FROM fraction WHERE id = '" + this.OManagerData.getRs().getInt("member") + "'");
+        try {
+            this.OManagerData.select("SELECT model, name, id, level, rep, cash, bank, voz, sex, phone, mail, vip, ip, admin, rank FROM accounts WHERE name = '" + login.USER_DB + "'");
 
             if (this.OManagerData.getRs().next()) {
-                this.userMember.setText("Ingresaste como: " + this.OManagerData.getRs().getString("name") + " (" + this.OManagerData.getRs().getString("rank" + rank) + ")");
-            } else {
-                this.userMemberPane.setVisible(false);
-                this.remove(this.userMemberPane);
+
+                // Información del personaje
+                ImageIcon rescaleSkin = new javax.swing.ImageIcon(getClass().getResource("/PJ/_" + this.OManagerData.getRs().getInt("model") + ".png"));
+                rescaleSkin = new ImageIcon(rescaleSkin.getImage().getScaledInstance(80, 80, Image.SCALE_AREA_AVERAGING));
+                this.userSkin.setIcon(rescaleSkin);
+                this.userSkin.setBorder(new borderRounder(new java.awt.Color(150, 150, 150), 2, 80, 80));
+
+                this.userName.setText(this.OManagerData.getRs().getString("name"));
+                this.userID.setText("- DB-ID: " + this.OManagerData.getRs().getString("id"));
+
+                this.userLevel.setText("Nivel: " + this.OManagerData.getRs().getString("level"));
+                this.userRep.setText("Rep: " + this.OManagerData.getRs().getString("rep"));
+                this.userMoneyTwo.setText("$" + this.OManagerData.getRs().getInt("cash"));
+                this.userBankTwo.setText("$" + this.OManagerData.getRs().getInt("bank"));
+                this.userVoz.setText("Edad: +" + this.OManagerData.getRs().getString("voz"));
+
+                switch (this.OManagerData.getRs().getInt("sex")) {
+                    case 1 ->
+                        this.userSex.setText("Sexo: Hombre");
+                    case 2 ->
+                        this.userSex.setText("Sexo: Mujer");
+                    case 3 ->
+                        this.userSex.setText("Sexo: Travesti");
+                    case 4 ->
+                        this.userSex.setText("Sexo: Marimacho");
+                    default ->
+                        this.userSex.setText("Sexo: Desconocido");
+                }
+
+                if (this.OManagerData.getRs().getInt("phone") != 0) {
+                    this.userPhone.setText("Tel: " + this.OManagerData.getRs().getString("phone"));
+                } else if (this.OManagerData.getRs().getInt("phone") == 0) {
+                    this.userPhone.setText("Tel: No tiene");
+                }
+
+                this.userMail.setText("Gmail: " + this.OManagerData.getRs().getString("mail"));
+
+                if (this.OManagerData.getRs().getInt("vip") != 0) {
+                    this.userVip.setText("VIP: Activo");
+                } else if (this.OManagerData.getRs().getInt("vip") == 0) {
+                    this.userVip.setText("VIP: No tiene");
+                }
+
+                this.userIP.setText("IP: " + this.OManagerData.getRs().getInt("ip"));
+
+                // Notificaciones
+                if (this.OManagerData.getRs().getInt("admin") > 6 || this.OManagerData.getRs().getInt("admin") == 0) {
+                    this.userAdminPane.setVisible(false);
+                    this.remove(this.userAdminPane);
+
+                } else if (this.OManagerData.getRs().getInt("admin") != 0) {
+
+                    switch (this.OManagerData.getRs().getInt("admin")) {
+                        case 1 ->
+                            this.userAdmin.setText("Ingresaste como: Ayudante");
+                        case 2 ->
+                            this.userAdmin.setText("Ingresaste como: Moderador");
+                        case 3 ->
+                            this.userAdmin.setText("Ingresaste como: Moderador Plus");
+                        case 4 ->
+                            this.userAdmin.setText("Ingresaste como: Super moderador");
+                        case 5 ->
+                            this.userAdmin.setText("Ingresaste como: Soporte");
+                        case 6 ->
+                            this.userAdmin.setText("Ingresaste como: Administrador");
+                    }
+                }
+
+                int rank = this.OManagerData.getRs().getInt("rank");
+
+                // New conection
+                this.OManagerData.select("SELECT id, name, leader, rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9, rank10 FROM fraction WHERE id = '" + this.OManagerData.getRs().getInt("member") + "'");
+
+                if (this.OManagerData.getRs().next()) {
+                    this.userMember.setText("Ingresaste como: " + this.OManagerData.getRs().getString("name") + " (" + this.OManagerData.getRs().getString("rank" + rank) + ")");
+                } else {
+                    this.userMemberPane.setVisible(false);
+                    this.remove(this.userMemberPane);
+                }
             }
-            
-            // Close conection
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            System.exit(1);
+        } finally {
             this.OManagerData.SQLClose();
         }
-
-        this.OManagerData.SQLClose();
     }
 
     @SuppressWarnings("unchecked")
@@ -856,7 +860,6 @@ public class account extends javax.swing.JPanel {
         if (evt.getSource() == this.hideSesion) {
             this.setVisible(false);
             run.window.remove(this);
-
             run.window.add(new login(), BorderLayout.CENTER);
         }
     }//GEN-LAST:event_hideSesionMouseClicked
