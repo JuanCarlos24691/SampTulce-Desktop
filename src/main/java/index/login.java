@@ -172,9 +172,10 @@ public class login extends javax.swing.JPanel {
 
     private void nowAccountTwoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nowAccountTwoMouseClicked
         if (evt.getSource() == this.nowAccountTwo) {
-            this.setVisible(false);
-            run.window.remove(this);
-            run.window.add(new createAccount(), BorderLayout.CENTER);
+            new showDialog().message("Esta funcion no esta disponible", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
+//            this.setVisible(false);
+//            run.window.remove(this);
+//            run.window.add(new createAccount(), BorderLayout.CENTER);
         }
     }//GEN-LAST:event_nowAccountTwoMouseClicked
 

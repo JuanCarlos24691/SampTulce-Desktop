@@ -1,14 +1,9 @@
 package index;
 
-//import interfaces.IManagerData;
 import java.awt.BorderLayout;
 import resource.loadFont;
-//import resource.managerData;
 
 public class createAccount extends javax.swing.JPanel {
-    
-    // Object
-    //private IManagerData OManagerData = new managerData();
     
     public createAccount() {
         

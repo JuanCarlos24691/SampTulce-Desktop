@@ -5,7 +5,7 @@ import java.awt.Color;
 
 public class run extends javax.swing.JFrame{
 
-    public static run window = new index.run();
+    public static final run window = new index.run();
 
     public static void main(String[] args) {
         try {
