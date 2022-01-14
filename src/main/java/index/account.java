@@ -215,6 +215,8 @@ public class account extends javax.swing.JPanel {
         userLevel5 = new javax.swing.JLabel();
         userBankOne5 = new javax.swing.JLabel();
         userBankTwo5 = new javax.swing.JLabel();
+        exitApp = new javax.swing.JLabel();
+        separatorOne = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -751,6 +753,21 @@ public class account extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        exitApp.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        exitApp.setForeground(new java.awt.Color(0, 153, 255));
+        exitApp.setText("Salir");
+        exitApp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitApp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitAppMouseClicked(evt);
+            }
+        });
+
+        separatorOne.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        separatorOne.setForeground(new java.awt.Color(100, 100, 100));
+        separatorOne.setText("-");
+        separatorOne.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -765,7 +782,12 @@ public class account extends javax.swing.JPanel {
                             .addComponent(hideSesion)
                             .addComponent(userName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userID)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userID)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(separatorOne)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(exitApp)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -816,17 +838,18 @@ public class account extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(userSkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
+                    .addComponent(userSkin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(userName)
                             .addComponent(userID))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hideSesion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(hideSesion)
+                            .addComponent(exitApp)
+                            .addComponent(separatorOne))))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(infoUser)
@@ -887,8 +910,16 @@ public class account extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_hideSesionMouseClicked
 
+    private void exitAppMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAppMouseClicked
+        if (evt.getSource() == this.exitApp) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_exitAppMouseClicked
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel exitApp;
     private javax.swing.JLabel hideSesion;
     private javax.swing.JPanel infoPane1;
     private javax.swing.JPanel infoPane2;
@@ -907,6 +938,7 @@ public class account extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel separatorOne;
     private javax.swing.JLabel userAdmin;
     private javax.swing.JLabel userAdmin2;
     private javax.swing.JLabel userAdmin4;
