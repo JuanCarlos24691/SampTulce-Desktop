@@ -201,19 +201,19 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="userName">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new loadFont().loadFonts(System.getProperty(&quot;user.dir&quot;) + &quot;/src/main/resources/fonts/Quicksand-SemiBold.ttf&quot;, 20)" type="code"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Nombre de usuario"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="userName.setFont(new loadFont().loadFonts(System.getProperty(&quot;user.dir&quot;) + &quot;/src/main/resources/fonts/Quicksand-SemiBold.ttf&quot;, 20));"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="userID">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new loadFont().loadFonts(System.getProperty(&quot;user.dir&quot;) + &quot;/src/main/resources/fonts/Quicksand-SemiBold.ttf&quot;, 20)" type="code"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="- DB-ID: 0"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="userID.setFont(new loadFont().loadFonts(System.getProperty(&quot;user.dir&quot;) + &quot;/src/main/resources/fonts/Quicksand-SemiBold.ttf&quot;, 20));"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="hideSesion">
       <Properties>

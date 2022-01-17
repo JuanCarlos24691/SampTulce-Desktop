@@ -216,11 +216,11 @@ public class account extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        userName.setText("Nombre de usuario");
         userName.setFont(new loadFont().loadFonts(System.getProperty("user.dir") + "/src/main/resources/fonts/Quicksand-SemiBold.ttf", 20));
+        userName.setText("Nombre de usuario");
 
-        userID.setText("- DB-ID: 0");
         userID.setFont(new loadFont().loadFonts(System.getProperty("user.dir") + "/src/main/resources/fonts/Quicksand-SemiBold.ttf", 20));
+        userID.setText("- DB-ID: 0");
 
         hideSesion.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         hideSesion.setForeground(new java.awt.Color(0, 153, 255));
