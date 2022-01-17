@@ -16,12 +16,14 @@ public class account extends javax.swing.JPanel {
     private final managerData OManagerData = new managerData();
 
     public account() throws SQLException {
-        run.window.setSize(880, 550);
+        
+        run.window.setSize(850, 550);
         run.window.setLocationRelativeTo(null);
         run.window.setResizable(true);
         run.window.setTitle("Cuenta - SampTulce");
-
+        
         initComponents();
+        
         this.dataAccount();
         this.userDesing();
     }
@@ -47,26 +49,26 @@ public class account extends javax.swing.JPanel {
     private void dataAccount() {
 
         try {
-            this.OManagerData.select("SELECT model, name, id, level, rep, cash, bank, voz, sex, phone, mail, vip, ip, admin, warn, member, rank FROM accounts WHERE name = '" + login.USER_DB + "'");
+            this.OManagerData.select("SELECT * FROM accounts LEFT JOIN bans ON bans.name = accounts.name LEFT JOIN fraction ON fraction.id = accounts.member WHERE accounts.name = '" + login.USER_DB + "'");
 
             if (this.OManagerData.getRs().next()) {
-
+                
                 // Información del personaje
-                ImageIcon rescaleSkin = new javax.swing.ImageIcon(getClass().getResource("/PJ/_" + this.OManagerData.getRs().getInt("model") + ".png"));
+                ImageIcon rescaleSkin = new javax.swing.ImageIcon(getClass().getResource("/PJ/_" + this.OManagerData.getRs().getInt("accounts.model") + ".png"));
                 rescaleSkin = new ImageIcon(rescaleSkin.getImage().getScaledInstance(80, 80, Image.SCALE_AREA_AVERAGING));
                 this.userSkin.setIcon(rescaleSkin);
                 this.userSkin.setBorder(new borderRounder(new java.awt.Color(150, 150, 150), 2, 80, 80));
 
-                this.userName.setText(this.OManagerData.getRs().getString("name"));
-                this.userID.setText("- DB-ID: " + this.OManagerData.getRs().getString("id"));
+                this.userName.setText(this.OManagerData.getRs().getString("accounts.name"));
+                this.userID.setText("- DB-ID: " + this.OManagerData.getRs().getString("accounts.id"));
 
-                this.userLevel.setText("Nivel: " + this.OManagerData.getRs().getString("level"));
-                this.userRep.setText("Rep: " + this.OManagerData.getRs().getString("rep"));
-                this.userMoneyTwo.setText("$" + this.OManagerData.getRs().getInt("cash"));
-                this.userBankTwo.setText("$" + this.OManagerData.getRs().getInt("bank"));
-                this.userVoz.setText("Edad: +" + this.OManagerData.getRs().getString("voz"));
+                this.userLevel.setText("Nivel: " + this.OManagerData.getRs().getString("accounts.level"));
+                this.userRep.setText("Rep: " + this.OManagerData.getRs().getString("accounts.rep"));
+                this.userMoneyTwo.setText("$" + this.OManagerData.getRs().getInt("accounts.cash"));
+                this.userBankTwo.setText("$" + this.OManagerData.getRs().getInt("accounts.bank"));
+                this.userVoz.setText("Edad: +" + this.OManagerData.getRs().getString("accounts.voz"));
 
-                switch (this.OManagerData.getRs().getInt("sex")) {
+                switch (this.OManagerData.getRs().getInt("accounts.sex")) {
                     case 1 ->
                         this.userSex.setText("Sexo: Hombre");
                     case 2 ->
@@ -79,30 +81,30 @@ public class account extends javax.swing.JPanel {
                         this.userSex.setText("Sexo: Desconocido");
                 }
 
-                if (this.OManagerData.getRs().getInt("phone") != 0) {
-                    this.userPhone.setText("Tel: " + this.OManagerData.getRs().getString("phone"));
-                } else if (this.OManagerData.getRs().getInt("phone") == 0) {
+                if (this.OManagerData.getRs().getInt("accounts.phone") != 0) {
+                    this.userPhone.setText("Tel: " + this.OManagerData.getRs().getString("accounts.phone"));
+                } else if (this.OManagerData.getRs().getInt("accounts.phone") == 0) {
                     this.userPhone.setText("Tel: No tiene");
                 }
 
-                this.userMail.setText("Gmail: " + this.OManagerData.getRs().getString("mail"));
+                this.userMail.setText("Gmail: " + this.OManagerData.getRs().getString("accounts.mail"));
 
-                if (this.OManagerData.getRs().getInt("vip") != 0) {
+                if (this.OManagerData.getRs().getInt("accounts.vip") != 0) {
                     this.userVip.setText("VIP: Activo");
-                } else if (this.OManagerData.getRs().getInt("vip") == 0) {
+                } else if (this.OManagerData.getRs().getInt("accounts.vip") == 0) {
                     this.userVip.setText("VIP: No tiene");
                 }
 
-                this.userIP.setText("IP: " + this.OManagerData.getRs().getString("ip"));
+                this.userIP.setText("IP: " + this.OManagerData.getRs().getString("accounts.ip"));
 
                 // Notificaciones
-                if (this.OManagerData.getRs().getInt("admin") > 6 || this.OManagerData.getRs().getInt("admin") == 0) {
+                if (this.OManagerData.getRs().getInt("accounts.admin") > 6 || this.OManagerData.getRs().getInt("accounts.admin") == 0) {
                     this.userAdminPane.setVisible(false);
                     this.remove(this.userAdminPane);
 
-                } else if (this.OManagerData.getRs().getInt("admin") != 0) {
+                } else if (this.OManagerData.getRs().getInt("accounts.admin") != 0) {
 
-                    switch (this.OManagerData.getRs().getInt("admin")) {
+                    switch (this.OManagerData.getRs().getInt("accounts.admin")) {
                         case 1 ->
                             this.userAdmin.setText("Ingresaste como: Ayudante");
                         case 2 ->
@@ -118,27 +120,17 @@ public class account extends javax.swing.JPanel {
                     }
                 }
 
-                int rank = this.OManagerData.getRs().getInt("rank");
-                int member = this.OManagerData.getRs().getInt("member");
-                int warn = this.OManagerData.getRs().getInt("warn");
-
-                // New select
-                this.OManagerData.select("SELECT name, whobanned, bandate, reason FROM bans WHERE name = '" + this.OManagerData.getRs().getString("name") + "'");
-
-                if (this.OManagerData.getRs().next()) {
-                    this.userWarn.setText("Fuiste baneado por " + this.OManagerData.getRs().getString("whobanned") + ", Razon: " + this.OManagerData.getRs().getString("reason") + " (Fecha: " + this.OManagerData.getRs().getString("bandate") + ")");
-                } else if (warn > 3 || warn == 0) {
+                if (this.OManagerData.getRs().getString("bans.name") != null) {
+                    this.userWarn.setText("Fuiste baneado por " + this.OManagerData.getRs().getString("bans.whobanned") + ", Razon: " + this.OManagerData.getRs().getString("bans.reason") + " (Fecha: " + this.OManagerData.getRs().getString("bans.bandate") + ")");
+                } else if (this.OManagerData.getRs().getInt("accounts.warn") > 3 || this.OManagerData.getRs().getInt("accounts.warn") == 0) {
                     this.userPaneWarn.setVisible(false);
                     this.remove(this.userPaneWarn);
-                } else if (warn < 3) {
-                    this.userWarn.setText("Advertencias: " + warn + "(Sí, llegas a las 3 advertencias seras baneado por 10 días)");
+                } else if (this.OManagerData.getRs().getInt("accounts.warn") < 3) {
+                    this.userWarn.setText("Advertencias: " + this.OManagerData.getRs().getInt("accounts.warn") + "(Sí, llegas a las 3 advertencias seras baneado por 10 días)");
                 }
 
-                // New select
-                this.OManagerData.select("SELECT id, name, rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8, rank9, rank10 FROM fraction WHERE id = '" + member + "'");
-
-                if (this.OManagerData.getRs().next()) {
-                    this.userMember.setText("Ingresaste como: " + this.OManagerData.getRs().getString("name") + " (" + this.OManagerData.getRs().getString("rank" + rank) + ")");
+                if (this.OManagerData.getRs().getString("fraction.name") != null) {
+                    this.userMember.setText("Ingresaste como: " + this.OManagerData.getRs().getString("fraction.name") + " (" + this.OManagerData.getRs().getString("fraction.rank" + this.OManagerData.getRs().getInt("accounts.rank")) + ")");
                 } else {
                     this.userMemberPane.setVisible(false);
                     this.remove(this.userMemberPane);
@@ -946,6 +938,7 @@ public class account extends javax.swing.JPanel {
     private void hideSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideSesionMouseClicked
         if (evt.getSource() == this.hideSesion) {
             this.setVisible(false);
+            this.removeAll();
             run.window.remove(this);
             run.window.add(new login(), BorderLayout.CENTER);
         }

@@ -99,6 +99,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="userNameKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="password">
       <Properties>

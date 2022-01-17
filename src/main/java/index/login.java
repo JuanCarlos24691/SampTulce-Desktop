@@ -12,16 +12,20 @@ public class login extends javax.swing.JPanel {
 
     // Object
     private final IManagerData OManagerData = new managerData();
-    
-    public static String USER_DB;
+
+    private final char noCharacter[] = {'°', '|', '!', '"', '#', '$', '%', '&', '/', '(', ')', '?', '¡',
+        '¿', '<', '>', ',', ';', '.', ':', '-', '{', '[', '}', ']', '´', '¨', '+', '*', '1', '2', '3',
+        '4', '5', '6', '7', '8', '9', '0'};
+
+    protected static String USER_DB;
 
     public login() {
-        
+
         run.window.setSize(650, 450);
         run.window.setLocationRelativeTo(null);
         run.window.setResizable(false);
         run.window.setTitle("Ingresar - SampTulce");
-        
+
         initComponents();
     }
 
@@ -48,6 +52,11 @@ public class login extends javax.swing.JPanel {
         userName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         userName.setText("Nombre de usuario");
         userName.setBorder(null);
+        userName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                userNameKeyTyped(evt);
+            }
+        });
 
         password.setBackground(new java.awt.Color(245, 245, 245));
         password.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -135,24 +144,21 @@ public class login extends javax.swing.JPanel {
     private void goAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goAccountActionPerformed
         if (evt.getSource() == this.goAccount) {
             if (!this.userName.getText().isEmpty() && this.userName.getText().length() <= 25 && !Arrays.toString(this.password.getPassword()).isEmpty() && this.password.getPassword().length <= 25 && this.userName.getText().contains("_")) {
-               
+
                 try {
-                    this.OManagerData.select("SELECT name, password FROM accounts WHERE name = '" + this.userName.getText() + "'");
-                    
+                    this.OManagerData.select("SELECT name, password FROM accounts WHERE name = '" + this.userName.getText() + "' AND password = '" + new String(this.password.getPassword()) + "'");
+
                     if (this.OManagerData.getRs().next()) {
-                        if (this.OManagerData.getRs().getString("name").equalsIgnoreCase(this.userName.getText()) && this.OManagerData.getRs().getString("password").equals(new String(this.password.getPassword()))) {
-                            
-                            login.USER_DB = this.OManagerData.getRs().getString("name");
-                            
-                            this.setVisible(false);
-                            run.window.remove(this);
-                            
-                            run.window.add(new account(), BorderLayout.CENTER);
-                        } else {
-                            new showDialog().message("Los datos que haz ingresado son erroneos\nPor favor vuelve a intentalo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
-                        }
+
+                        login.USER_DB = this.OManagerData.getRs().getString("name");
+
+                        this.setVisible(false);
+                        this.removeAll();
+                        run.window.remove(this);
+                        run.window.add(new account(), BorderLayout.CENTER);
+
                     } else {
-                        new showDialog().message("Esta cuenta no existe, Por favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
+                        new showDialog().message("Esta cuenta no existe o los datos son erroneos\nPor favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace(System.out);
@@ -162,9 +168,9 @@ public class login extends javax.swing.JPanel {
                 }
             } else {
                 if (this.userName.getText().length() > 25 || this.password.getPassword().length > 25 || this.userName.getText().length() == 0 || this.password.getPassword().length == 0) {
-                    new showDialog().message("Uno de los campos tiene una longitud demasiado grande, El maximo es de 25 caracteres\nPor favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
-                } else if (!this.userName.getText().contains("_")){
-                    new showDialog().message("El formato de nombre no es correcto(Formato: Nombre_Apellido)\nPor favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
+                    new showDialog().message("Uno de los campos tiene una longitud demasiado grande o no hay nada escrito\nel maximo es de 25 caracteres, Por favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
+                } else if (!this.userName.getText().contains("_")) {
+                    new showDialog().message("El formato de nombre no es correcto\nPor favor utiliza Nombre_Apellido y vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
                 }
             }
         }
@@ -173,11 +179,18 @@ public class login extends javax.swing.JPanel {
     private void nowAccountTwoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nowAccountTwoMouseClicked
         if (evt.getSource() == this.nowAccountTwo) {
             new showDialog().message("Esta funcion no esta disponible", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
-//            this.setVisible(false);
-//            run.window.remove(this);
-//            run.window.add(new createAccount(), BorderLayout.CENTER);
         }
     }//GEN-LAST:event_nowAccountTwoMouseClicked
+
+    private void userNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameKeyTyped
+        if (evt.getSource() == this.userName) {
+            for (int i = 0; i < this.noCharacter.length; i++) {
+                if (evt.getKeyChar() == this.noCharacter[i]) {
+                    evt.consume();
+                }
+            }
+        }
+    }//GEN-LAST:event_userNameKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
