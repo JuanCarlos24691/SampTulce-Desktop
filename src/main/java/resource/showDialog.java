@@ -2,41 +2,91 @@ package resource;
 
 import index.run;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.beans.PropertyChangeListener;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 
 public class showDialog extends JDialog implements interfaces.IShowDialog {
 
-    private JOptionPane JOP;
-
     @Override
     public void message(String message, URL image, String[] buttons) {
-        UIManager.put("Panel.background", new ColorUIResource(228, 230, 235));
+
+        JPanel backgroumd = new JPanel();
+        backgroumd.setBounds(run.window.getBounds());
+        backgroumd.setBackground(new Color(0, 0, 0, 50));
+        backgroumd.setAlignmentY(2);
+
+        run.window.add(backgroumd, BorderLayout.CENTER, 0);
+
+        backgroumd.setVisible(true);
+        backgroumd.updateUI();
+
         JDialog dialog = new JDialog(run.window, true);
+        UIManager.put("Panel.background", new ColorUIResource(255, 255, 255));
 
+        JOptionPane JOP = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION, new ImageIcon(image), buttons, buttons[0]);
 
-        this.JOP = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION, new ImageIcon(image), buttons, buttons[0]);
+        JOP.addMouseListener(new java.awt.event.MouseAdapter() {
 
-        JOP.addPropertyChangeListener((java.beans.PropertyChangeEvent e) -> {
-            
-            String buttonClick = e.getPropertyName();
-            
-            if ("value".equals(buttonClick))
-                dialog.dispose();
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                System.out.println(evt.getSource().toString());
+            }
         });
-        
+
+        JOP.addPropertyChangeListener(e -> {
+
+            System.out.println(e.getSource().toString());
+            if (e.getSource().toString().contains("Aceptar")) {
+                run.window.setEnabled(true);
+                backgroumd.setVisible(false);
+                this.removeAll();
+
+                dialog.dispose();
+            }
+
+        });
+
+        /*JOP.addPropertyChangeListener((java.beans.PropertyChangeEvent e) -> {
+
+            if (e.getSource().toString().contains("Aceptar")) {
+                System.out.println("exito!");
+            }
+
+            if ("value".equals(e.getPropertyName())) {
+
+                run.window.setEnabled(true);
+                backgroumd.setVisible(false);
+                this.removeAll();
+
+                dialog.dispose();
+            }
+        });*/
+
         dialog.setUndecorated(true);
-        dialog.setLayout(new BorderLayout());
+        JOP.setBackground(new ColorUIResource(255, 255, 255));
         dialog.add(JOP);
         dialog.pack();
-        dialog.setLocationRelativeTo(run.window);
-        dialog.setShape(new RoundRectangle2D.Double(0, 0, dialog.getWidth(), dialog.getHeight(), 30, 30));
-        JOP.setBackground(new ColorUIResource(228, 230, 235));
+        dialog.setLocationRelativeTo(run.window); // Center
+        dialog.setShape(new RoundRectangle2D.Double(0, 0, dialog.getWidth(), dialog.getHeight(), 30, 30)); // Border
+
         dialog.setVisible(true);
+    }
+
+    @Override
+    public void eventButtons(ActionEvent e) {
+
+        System.out.println(e.getSource().toString());
+        if (e.getSource().toString().contains("Aceptar")) {
+            System.out.println("exito!");
+        }
     }
 }

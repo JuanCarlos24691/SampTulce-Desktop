@@ -17,11 +17,47 @@ public class managerData implements IManagerData{
     }
 
     @Override
+    public void select(String query, String database) throws SQLException {
+        this.pstmt = new connectDatabase().connect(database).prepareStatement(query);
+        this.rs = this.pstmt.executeQuery();
+    }
+
+    @Override
+    public void select(String query, String database, String server, String port) throws SQLException {
+        this.pstmt = new connectDatabase().connect(database, server, port).prepareStatement(query);
+        this.rs = this.pstmt.executeQuery();
+    }
+
+    @Override
+    public void select(String query, String database, String server, String port, String username, String password) throws SQLException {
+        this.pstmt = new connectDatabase().connect(database, server, port, username, password).prepareStatement(query);
+        this.rs = this.pstmt.executeQuery();
+    }
+    
+    @Override
     public void executeQuery(String query) throws SQLException {
         this.pstmt = new connectDatabase().connect().prepareStatement(query);
         this.pstmt.executeUpdate();
     }
 
+    @Override
+    public void executeQuery(String query, String database) throws SQLException {
+        this.pstmt = new connectDatabase().connect(database).prepareStatement(query);
+        this.pstmt.executeUpdate();
+    }
+
+    @Override
+    public void executeQuery(String query, String database, String server, String port) throws SQLException {
+        this.pstmt = new connectDatabase().connect(database, server, port).prepareStatement(query);
+        this.pstmt.executeUpdate();
+    }
+    
+    @Override
+    public void executeQuery(String query, String database, String server, String port, String username, String password) throws SQLException {
+        this.pstmt = new connectDatabase().connect(database, server, port, username, password).prepareStatement(query);
+        this.pstmt.executeUpdate();
+    }
+    
     @Override
     public void SQLClose() {
         try {

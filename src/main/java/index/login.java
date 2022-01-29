@@ -13,18 +13,19 @@ public class login extends javax.swing.JPanel {
     // Object
     private final IManagerData OManagerData = new managerData();
 
-    private final char noCharacter[] = {'°', '|', '!', '"', '#', '$', '%', '&', '/', '(', ')', '?', '¡',
+    private final char noCharacterUserName[] = {'\'', '°', '|', '!', '"', '#', '$', '%', '&', '/', '(', ')', '?', '¡',
         '¿', '<', '>', ',', ';', '.', ':', '-', '{', '[', '}', ']', '´', '¨', '+', '*', '1', '2', '3',
         '4', '5', '6', '7', '8', '9', '0'};
-
-    protected static String USER_DB;
+    
+    private final char noCharacterPassword[] = {'\'', '=', ',', '*', '.'};
 
     public login() {
 
         run.window.setSize(650, 450);
         run.window.setLocationRelativeTo(null);
-        run.window.setResizable(false);
         run.window.setTitle("Ingresar - SampTulce");
+        run.window.setResizable(false);
+        run.window.setVisible(true);
 
         initComponents();
     }
@@ -64,8 +65,13 @@ public class login extends javax.swing.JPanel {
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setText("012345678");
         password.setBorder(null);
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passwordKeyTyped(evt);
+            }
+        });
 
-        goAccount.setBackground(new java.awt.Color(255, 255, 255));
+        goAccount.setBackground(null);
         goAccount.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         goAccount.setForeground(new java.awt.Color(0, 117, 239));
         goAccount.setText("Abrir sesión");
@@ -150,12 +156,13 @@ public class login extends javax.swing.JPanel {
 
                     if (this.OManagerData.getRs().next()) {
 
-                        login.USER_DB = this.OManagerData.getRs().getString("name");
+                        run.USER_DB = this.OManagerData.getRs().getString("name");
 
+                        run.window.setVisible(false);
                         this.setVisible(false);
                         this.removeAll();
                         run.window.remove(this);
-                        run.window.add(new account(), BorderLayout.CENTER);
+                        run.window.add(new account(), BorderLayout.CENTER, 0);
 
                     } else {
                         new showDialog().message("Esta cuenta no existe o los datos son erroneos\nPor favor vuelve a intentarlo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
@@ -176,22 +183,31 @@ public class login extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_goAccountActionPerformed
 
-    private void nowAccountTwoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nowAccountTwoMouseClicked
-        if (evt.getSource() == this.nowAccountTwo) {
-            new showDialog().message("Esta funcion no esta disponible", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
-        }
-    }//GEN-LAST:event_nowAccountTwoMouseClicked
-
     private void userNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameKeyTyped
         if (evt.getSource() == this.userName) {
-            for (int i = 0; i < this.noCharacter.length; i++) {
-                if (evt.getKeyChar() == this.noCharacter[i]) {
+            for (int i = 0; i < this.noCharacterUserName.length; i++) {
+                if (evt.getKeyChar() == this.noCharacterUserName[i]) {
                     evt.consume();
                 }
             }
         }
     }//GEN-LAST:event_userNameKeyTyped
 
+    private void passwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyTyped
+        if (evt.getSource() == this.password) {
+            for (int i = 0; i < this.noCharacterPassword.length; i++) {
+                if (evt.getKeyChar() == this.noCharacterPassword[i]) {
+                    evt.consume();
+                }
+            }
+        }
+    }//GEN-LAST:event_passwordKeyTyped
+
+    private void nowAccountTwoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nowAccountTwoMouseClicked
+        if (evt.getSource() == this.nowAccountTwo && this.nowAccountTwo.isEnabled()) {
+            new showDialog().message("Esta funcion no esta disponible", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
+        }
+    }//GEN-LAST:event_nowAccountTwoMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel getPassword;

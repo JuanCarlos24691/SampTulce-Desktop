@@ -16,14 +16,15 @@ public class account extends javax.swing.JPanel {
     private final managerData OManagerData = new managerData();
 
     public account() throws SQLException {
-        
+
         run.window.setSize(850, 550);
         run.window.setLocationRelativeTo(null);
-        run.window.setResizable(true);
         run.window.setTitle("Cuenta - SampTulce");
-        
+        run.window.setResizable(true);
+        run.window.setVisible(true);
+
         initComponents();
-        
+
         this.dataAccount();
         this.userDesing();
     }
@@ -49,93 +50,90 @@ public class account extends javax.swing.JPanel {
     private void dataAccount() {
 
         try {
-            this.OManagerData.select("SELECT * FROM accounts LEFT JOIN bans ON bans.name = accounts.name LEFT JOIN fraction ON fraction.id = accounts.member WHERE accounts.name = '" + login.USER_DB + "'");
+            this.OManagerData.select("SELECT * FROM accounts LEFT JOIN bans ON bans.name = accounts.name LEFT JOIN fraction ON fraction.id = accounts.member WHERE accounts.name = '" + run.USER_DB + "'");
+            this.OManagerData.getRs().next();
 
-            if (this.OManagerData.getRs().next()) {
-                
-                // Información del personaje
-                ImageIcon rescaleSkin = new javax.swing.ImageIcon(getClass().getResource("/PJ/_" + this.OManagerData.getRs().getInt("accounts.model") + ".png"));
-                rescaleSkin = new ImageIcon(rescaleSkin.getImage().getScaledInstance(80, 80, Image.SCALE_AREA_AVERAGING));
-                this.userSkin.setIcon(rescaleSkin);
-                this.userSkin.setBorder(new borderRounder(new java.awt.Color(150, 150, 150), 2, 80, 80));
+            // Información del personaje
+            ImageIcon rescaleSkin = new javax.swing.ImageIcon(getClass().getResource("/PJ/_" + this.OManagerData.getRs().getInt("accounts.model") + ".png"));
+            rescaleSkin = new ImageIcon(rescaleSkin.getImage().getScaledInstance(80, 80, Image.SCALE_AREA_AVERAGING));
+            this.userSkin.setIcon(rescaleSkin);
+            this.userSkin.setBorder(new borderRounder(new java.awt.Color(150, 150, 150), 2, 80, 80));
 
-                this.userName.setText(this.OManagerData.getRs().getString("accounts.name"));
-                this.userID.setText("- DB-ID: " + this.OManagerData.getRs().getString("accounts.id"));
+            this.userName.setText(this.OManagerData.getRs().getString("accounts.name"));
+            this.userID.setText("- DB-ID: " + this.OManagerData.getRs().getString("accounts.id"));
 
-                this.userLevel.setText("Nivel: " + this.OManagerData.getRs().getString("accounts.level"));
-                this.userRep.setText("Rep: " + this.OManagerData.getRs().getString("accounts.rep"));
-                this.userMoneyTwo.setText("$" + this.OManagerData.getRs().getInt("accounts.cash"));
-                this.userBankTwo.setText("$" + this.OManagerData.getRs().getInt("accounts.bank"));
-                this.userVoz.setText("Edad: +" + this.OManagerData.getRs().getString("accounts.voz"));
+            this.userLevel.setText("Nivel: " + this.OManagerData.getRs().getString("accounts.level"));
+            this.userRep.setText("Rep: " + this.OManagerData.getRs().getString("accounts.rep"));
+            this.userMoneyTwo.setText("$" + this.OManagerData.getRs().getInt("accounts.cash"));
+            this.userBankTwo.setText("$" + this.OManagerData.getRs().getInt("accounts.bank"));
+            this.userVoz.setText("Edad: +" + this.OManagerData.getRs().getString("accounts.voz"));
 
-                switch (this.OManagerData.getRs().getInt("accounts.sex")) {
+            switch (this.OManagerData.getRs().getInt("accounts.sex")) {
+                case 1 ->
+                    this.userSex.setText("Sexo: Hombre");
+                case 2 ->
+                    this.userSex.setText("Sexo: Mujer");
+                case 3 ->
+                    this.userSex.setText("Sexo: Travesti");
+                case 4 ->
+                    this.userSex.setText("Sexo: Marimacho");
+                default ->
+                    this.userSex.setText("Sexo: Desconocido");
+            }
+
+            if (this.OManagerData.getRs().getInt("accounts.phone") != 0) {
+                this.userPhone.setText("Tel: " + this.OManagerData.getRs().getString("accounts.phone"));
+            } else if (this.OManagerData.getRs().getInt("accounts.phone") == 0) {
+                this.userPhone.setText("Tel: No tiene");
+            }
+
+            this.userMail.setText("Gmail: " + this.OManagerData.getRs().getString("accounts.mail"));
+
+            if (this.OManagerData.getRs().getInt("accounts.vip") != 0) {
+                this.userVip.setText("VIP: Activo");
+            } else if (this.OManagerData.getRs().getInt("accounts.vip") == 0) {
+                this.userVip.setText("VIP: No tiene");
+            }
+
+            this.userIP.setText("IP: " + this.OManagerData.getRs().getString("accounts.ip"));
+
+            // Notificaciones
+            if (this.OManagerData.getRs().getInt("accounts.admin") > 6 || this.OManagerData.getRs().getInt("accounts.admin") == 0) {
+                this.userAdminPane.setVisible(false);
+                this.remove(this.userAdminPane);
+
+            } else if (this.OManagerData.getRs().getInt("accounts.admin") != 0) {
+
+                switch (this.OManagerData.getRs().getInt("accounts.admin")) {
                     case 1 ->
-                        this.userSex.setText("Sexo: Hombre");
+                        this.userAdmin.setText("Ingresaste como: Ayudante");
                     case 2 ->
-                        this.userSex.setText("Sexo: Mujer");
+                        this.userAdmin.setText("Ingresaste como: Moderador");
                     case 3 ->
-                        this.userSex.setText("Sexo: Travesti");
+                        this.userAdmin.setText("Ingresaste como: Moderador Plus");
                     case 4 ->
-                        this.userSex.setText("Sexo: Marimacho");
-                    default ->
-                        this.userSex.setText("Sexo: Desconocido");
+                        this.userAdmin.setText("Ingresaste como: Super moderador");
+                    case 5 ->
+                        this.userAdmin.setText("Ingresaste como: Soporte");
+                    case 6 ->
+                        this.userAdmin.setText("Ingresaste como: Administrador");
                 }
+            }
 
-                if (this.OManagerData.getRs().getInt("accounts.phone") != 0) {
-                    this.userPhone.setText("Tel: " + this.OManagerData.getRs().getString("accounts.phone"));
-                } else if (this.OManagerData.getRs().getInt("accounts.phone") == 0) {
-                    this.userPhone.setText("Tel: No tiene");
-                }
+            if (this.OManagerData.getRs().getString("bans.name") != null) {
+                this.userWarn.setText("Fuiste baneado por " + this.OManagerData.getRs().getString("bans.whobanned") + ", Razon: " + this.OManagerData.getRs().getString("bans.reason") + " (Fecha: " + this.OManagerData.getRs().getString("bans.bandate") + ")");
+            } else if (this.OManagerData.getRs().getInt("accounts.warn") > 3 || this.OManagerData.getRs().getInt("accounts.warn") == 0) {
+                this.userPaneWarn.setVisible(false);
+                this.remove(this.userPaneWarn);
+            } else if (this.OManagerData.getRs().getInt("accounts.warn") < 3) {
+                this.userWarn.setText("Advertencias: " + this.OManagerData.getRs().getInt("accounts.warn") + "(Sí, llegas a las 3 advertencias seras baneado por 10 días)");
+            }
 
-                this.userMail.setText("Gmail: " + this.OManagerData.getRs().getString("accounts.mail"));
-
-                if (this.OManagerData.getRs().getInt("accounts.vip") != 0) {
-                    this.userVip.setText("VIP: Activo");
-                } else if (this.OManagerData.getRs().getInt("accounts.vip") == 0) {
-                    this.userVip.setText("VIP: No tiene");
-                }
-
-                this.userIP.setText("IP: " + this.OManagerData.getRs().getString("accounts.ip"));
-
-                // Notificaciones
-                if (this.OManagerData.getRs().getInt("accounts.admin") > 6 || this.OManagerData.getRs().getInt("accounts.admin") == 0) {
-                    this.userAdminPane.setVisible(false);
-                    this.remove(this.userAdminPane);
-
-                } else if (this.OManagerData.getRs().getInt("accounts.admin") != 0) {
-
-                    switch (this.OManagerData.getRs().getInt("accounts.admin")) {
-                        case 1 ->
-                            this.userAdmin.setText("Ingresaste como: Ayudante");
-                        case 2 ->
-                            this.userAdmin.setText("Ingresaste como: Moderador");
-                        case 3 ->
-                            this.userAdmin.setText("Ingresaste como: Moderador Plus");
-                        case 4 ->
-                            this.userAdmin.setText("Ingresaste como: Super moderador");
-                        case 5 ->
-                            this.userAdmin.setText("Ingresaste como: Soporte");
-                        case 6 ->
-                            this.userAdmin.setText("Ingresaste como: Administrador");
-                    }
-                }
-
-                if (this.OManagerData.getRs().getString("bans.name") != null) {
-                    this.userWarn.setText("Fuiste baneado por " + this.OManagerData.getRs().getString("bans.whobanned") + ", Razon: " + this.OManagerData.getRs().getString("bans.reason") + " (Fecha: " + this.OManagerData.getRs().getString("bans.bandate") + ")");
-                } else if (this.OManagerData.getRs().getInt("accounts.warn") > 3 || this.OManagerData.getRs().getInt("accounts.warn") == 0) {
-                    this.userPaneWarn.setVisible(false);
-                    this.remove(this.userPaneWarn);
-                } else if (this.OManagerData.getRs().getInt("accounts.warn") < 3) {
-                    this.userWarn.setText("Advertencias: " + this.OManagerData.getRs().getInt("accounts.warn") + "(Sí, llegas a las 3 advertencias seras baneado por 10 días)");
-                }
-
-                if (this.OManagerData.getRs().getString("fraction.name") != null) {
-                    this.userMember.setText("Ingresaste como: " + this.OManagerData.getRs().getString("fraction.name") + " (" + this.OManagerData.getRs().getString("fraction.rank" + this.OManagerData.getRs().getInt("accounts.rank")) + ")");
-                } else {
-                    this.userMemberPane.setVisible(false);
-                    this.remove(this.userMemberPane);
-                }
-
+            if (this.OManagerData.getRs().getString("fraction.name") != null) {
+                this.userMember.setText("Ingresaste como: " + this.OManagerData.getRs().getString("fraction.name") + " (" + this.OManagerData.getRs().getString("fraction.rank" + this.OManagerData.getRs().getInt("accounts.rank")) + ")");
+            } else {
+                this.userMemberPane.setVisible(false);
+                this.remove(this.userMemberPane);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -694,7 +692,7 @@ public class account extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userBankTwo4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userLevel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, Short.MAX_VALUE)
+                .addComponent(userLevel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                 .addContainerGap())
         );
         inventoryPane5Layout.setVerticalGroup(
@@ -819,8 +817,8 @@ public class account extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(infoUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(120, 120, 120))
+                                .addComponent(infoUser)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE))
                             .addComponent(infoPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(infoPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(infoPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -828,14 +826,14 @@ public class account extends javax.swing.JPanel {
                             .addComponent(infoPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inventoryPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inventoryPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(inventoryPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inventoryPane4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inventoryPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(inventoryPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inventoryPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(infoUser1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE))
+                            .addComponent(inventoryPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(userPaneNotification4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -937,6 +935,8 @@ public class account extends javax.swing.JPanel {
 
     private void hideSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideSesionMouseClicked
         if (evt.getSource() == this.hideSesion) {
+            
+            run.window.setVisible(false);
             this.setVisible(false);
             this.removeAll();
             run.window.remove(this);
@@ -959,7 +959,7 @@ public class account extends javax.swing.JPanel {
     private void aggServerIpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aggServerIpMouseClicked
         if (evt.getSource() == this.aggServerIp) {
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
-                new openBrowser().openURL("samp://52.167.129.168:7777");    
+                new openBrowser().openURL("samp://52.167.129.168:7777");
             } else {
                 new showDialog().message("SA-MP no se encuentra disponible en su sistema operativo", getClass().getResource("/images/cancel.png"), new String[]{"Aceptar"});
             }
